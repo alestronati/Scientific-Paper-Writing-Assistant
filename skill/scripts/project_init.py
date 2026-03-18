@@ -62,6 +62,7 @@ BANNED_PHRASES = [
     "notably",
     "furthermore",
     "it is worth noting",
+    "it's worth noting",
     "it is important to note",
     "in conclusion",
     "in summary",
@@ -81,6 +82,14 @@ BANNED_PHRASES = [
     "multifaceted",
     "underscores",
     "pivotal",
+    "moreover",
+    "it should be noted",
+    "importantly",
+    "interestingly",
+    "in this context",
+    "in light of",
+    "the findings suggest",
+    "taken together",
 ]
 
 

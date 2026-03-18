@@ -12,7 +12,7 @@
   <a href="#installation"><img src="https://img.shields.io/badge/Claude_Code-skill_%2B_agents-blue?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiPjxwYXRoIGQ9Ik0xMiAyTDIgN2wxMCA1IDEwLTUtMTAtNXoiLz48cGF0aCBkPSJNMiAxN2wxMCA1IDEwLTUiLz48cGF0aCBkPSJNMiAxMmwxMCA1IDEwLTUiLz48L3N2Zz4=" alt="Claude Code Skill"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green?style=for-the-badge" alt="MIT License"></a>
   <img src="https://img.shields.io/badge/agents-11-purple?style=for-the-badge" alt="11 Agents">
-  <img src="https://img.shields.io/badge/python-3.11+-yellow?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.11+">
+  <img src="https://img.shields.io/badge/Claude_Code_%2B_Python_3.10+-yellow?style=for-the-badge&logo=python&logoColor=white" alt="Claude Code + Python 3.10+">
 </p>
 
 <p align="center">
@@ -33,7 +33,7 @@ The system enforces scientific rigor through:
 
 - **Adversarial verification** -- read-only agents that challenge claims against cited sources
 - **5-layer citation integrity** -- arXiv, CrossRef, Semantic Scholar, LLM relevance, retraction checks
-- **Anti-LLM writing rules** -- bans 24 phrases that mark AI-generated text ("delve into", "it is worth noting", etc.)
+- **Anti-LLM writing rules** -- bans 32 phrases that mark AI-generated text ("delve into", "it is worth noting", etc.)
 - **Template content detection** -- 13 regex patterns that catch placeholder text before submission
 - **Section contracts** -- Definition of Done checklists per section type
 
@@ -124,23 +124,26 @@ my-paper/
 ├── 00_Title_Keywords/
 ├── 01_Abstract/
 ├── 02_Introduction/
-│   └── cited_papers/          ← PDFs for verification
-├── 03_Materials_Methods/
+├── 03_Methods/
 ├── 04_Results/
-│   ├── figures/               ← Source data for figures
-│   └── tables/
 ├── 05_Discussion/
 ├── 06_Conclusions/
-├── 07_Acknowledgments/
-├── 08_Data_Availability/
-├── 09_Bibliography/           ← All reference PDFs
-├── 10_Figures/                ← Final publication figures
-├── 11_Tables/
-├── 12_Author_Contributions/
+├── 07_Figures/
+│   └── figures/
+├── 08_Tables/
+│   └── tables/
+├── 09_Bibliography/
+│   └── cited_papers/
+├── 10_Data_Availability/
+├── 11_Author_Contributions/
+├── 12_Competing_Interests/
 ├── 13_Supplementary_Material/
-├── project_state.yaml         ← Version tracking + word counts
-├── data_manifest.yaml         ← SHA-256 hashes for data provenance
-└── journal_guidelines.md      ← Cached journal requirements
+├── data/
+│   └── data_manifest.yaml
+├── project_state.yaml
+├── writing_rules.yaml
+├── section_contracts.yaml
+└── journal_guidelines.md
 ```
 
 ### Version Control
@@ -162,7 +165,7 @@ Layer 5: Retraction check        → Flag retracted papers via CrossRef
 | Gate | Mechanism | Threshold |
 |------|-----------|-----------|
 | Template content | 13 regex patterns | ≤ 5% of lines |
-| Anti-LLM language | 24 banned phrases | Zero tolerance |
+| Anti-LLM language | 32 banned phrases | Zero tolerance |
 | Hedging frequency | Word-level scan | ≤ 3% |
 | Section contracts | Per-type DoD checklist | All items pass |
 | Figure DPI | Metadata extraction | 300 dev / 900 final |
@@ -173,8 +176,8 @@ Layer 5: Retraction check        → Flag retracted papers via CrossRef
 
 ### Prerequisites
 
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) with **Opus 4.6**
-- Python 3.11+ with `pyyaml` (`pip install pyyaml`)
+- [Claude Code](https://code.claude.com/docs) with **Opus 4.6**
+- Python 3.10+ with `pyyaml` (`pip install pyyaml`)
 
 ### Setup
 
@@ -185,12 +188,12 @@ Layer 5: Retraction check        → Flag retracted papers via CrossRef
 
 2. **Copy skill to Claude Code:**
    ```bash
-   cp -r scientific-paper-writer/skill/* ~/.claude/skills/scientific-paper-writer/
+   cp -r Scientific-Paper-Writing-Assistant/skill/* ~/.claude/skills/scientific-paper-writer/
    ```
 
 3. **Copy agent definitions:**
    ```bash
-   cp scientific-paper-writer/agents/*.md ~/.claude/agents/
+   cp Scientific-Paper-Writing-Assistant/agents/*.md ~/.claude/agents/
    ```
 
 4. **Start using it:**
@@ -217,7 +220,7 @@ echo "Done. Use /paper init to start."
 
 The system enforces scientific writing standards by default:
 
-**Banned phrases** (24 total): "delve into", "it is worth noting", "in the realm of", "plays a crucial role", "sheds light on", "paving the way", "a testament to", "offers valuable insights", "in today's rapidly evolving", "the findings underscore", "a nuanced understanding", "at the forefront", "offers a comprehensive", "this study contributes to", and more.
+**Banned phrases** (32 total): "delve into", "notably", "furthermore", "it is worth noting", "it's worth noting", "it is important to note", "in conclusion", "in summary", "plays a crucial role", "sheds light on", "paves the way", "a myriad of", "a plethora of", "paradigm shift", "cutting-edge", "groundbreaking", "novel insights", "robust", "landscape", "leveraging", "holistic", "multifaceted", "underscores", "pivotal", "moreover", "it should be noted", "importantly", "interestingly", "in this context", "in light of", "the findings suggest", "taken together".
 
 **Style rules:**
 - Active voice preferred (passive flagged but not auto-corrected)
@@ -255,10 +258,10 @@ python -m pytest tests/ -v
 
 This project integrates ideas and components from:
 
-- **[AutoResearchClaw](https://github.com/OpenClaw/AutoResearchClaw)** (MIT) -- Template content detection, citation verification logic, writing rules, evolution store concept
+- **[AutoResearchClaw](https://github.com/aiming-lab/AutoResearchClaw)** (MIT) -- Template content detection, citation verification logic, writing rules, evolution store concept
 - **[K-Dense Scientific Skills](https://k-dense.ai)** -- Scientific writing, citation management, peer review, and visualization skills
 - **Chain of Verification (CoVe)** -- Dhuliawala et al. (2024), factored verification approach used by the claim-verifier agent
-- **[Claude Code Superpowers](https://github.com/anthropics/claude-code)** -- Development workflows
+- **[Claude Code](https://github.com/anthropics/claude-code)** -- Development workflows
 
 ---
 
