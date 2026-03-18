@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="docs/figures/architecture.png" alt="Scientific Paper Writer Architecture" width="800">
+  <img src="docs/figures/architecture.png" alt="Scientific Paper Writing Assistant Architecture" width="800">
 </p>
 
-<h1 align="center">Scientific Paper Writer</h1>
+<h1 align="center">Scientific Paper Writing Assistant</h1>
 
 <p align="center">
   <strong>A multi-agent system for writing, verifying, and exporting scientific manuscripts in Claude Code</strong>
@@ -27,7 +27,7 @@
 
 ## What is this?
 
-Scientific Paper Writer is a **Claude Code skill** that turns your research data into publication-ready manuscripts. It uses **11 specialized AI agents** that write, verify, format, and export your paper -- each with a strict role boundary.
+Scientific Paper Writing Assistant is a **Claude Code skill** that turns your research data into publication-ready manuscripts. It uses **11 specialized AI agents** that write, verify, format, and export your paper -- each with a strict role boundary.
 
 The system enforces scientific rigor through:
 
