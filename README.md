@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/figures/architecture.png" alt="Scientific Paper Writing Assistant Architecture" width="800">
+  <img src="docs/figures/cover.png" alt="Scientific Paper Writing Assistant — Multi-Agent System for Claude Code" width="800">
 </p>
 
 <h1 align="center">Scientific Paper Writing Assistant</h1>
