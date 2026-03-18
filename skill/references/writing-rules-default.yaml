@@ -1,0 +1,49 @@
+global:
+  banned_phrases:
+    - "delve into"
+    - "it's worth noting"
+    - "it is worth noting"
+    - "notably"
+    - "in conclusion"
+    - "furthermore"
+    - "moreover"
+    - "it should be noted"
+    - "importantly"
+    - "interestingly"
+    - "in this context"
+    - "in light of"
+    - "a myriad of"
+    - "a plethora of"
+    - "plays a crucial role"
+    - "sheds light on"
+    - "paves the way"
+    - "the findings suggest"
+    - "taken together"
+    - "it is important to note"
+  no_em_dashes: true
+  prefer_active_voice: true
+  hedging_max_frequency: 0.03
+  template_content_max_ratio: 0.05
+  citation_format: nature
+
+per_section:
+  title:
+    max_words: 20
+    rules: ["No acronyms unless universally known", "No question format unless journal allows"]
+  abstract:
+    rules: ["Problem-Method-Results structure", "Max 3 numeric values", "No citations unless journal requires"]
+  methods:
+    require_software_versions: true
+    require_sample_sizes: true
+    require_statistical_details: true
+    rules: ["Every test named with exact parameters", "Reproducible by third party"]
+  results:
+    require_data_provenance: true
+    require_figure_references: true
+    rules: ["Report effect sizes with CI alongside p-values", "Reference every figure/table by number"]
+  discussion:
+    rules: ["Start with principal findings", "Address limitations explicitly"]
+  bibliography:
+    default_format: nature
+    require_doi_verification: true
+    require_retraction_check: true

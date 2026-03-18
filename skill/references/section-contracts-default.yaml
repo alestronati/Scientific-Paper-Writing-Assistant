@@ -1,0 +1,47 @@
+title:
+  dod:
+    - "Under 20 words"
+    - "No recognizable LLM phrasing"
+abstract:
+  dod:
+    - "Numbers match Results section exactly"
+    - "Within journal word limit"
+    - "Problem-Method-Results structure"
+    - "No template content (quality gate passes)"
+methods:
+  dod:
+    - "All statistical tests named with exact parameters"
+    - "Software names and versions stated"
+    - "Sample sizes per group explicitly stated"
+    - "Inclusion/exclusion criteria defined"
+    - "Reproducible by third party"
+    - "No template content"
+results:
+  dod:
+    - "All numbers traceable to source data (data_manifest.yaml)"
+    - "All figures and tables referenced by number"
+    - "Statistical values include CI and effect sizes"
+    - "No template content"
+discussion:
+  dod:
+    - "All cited claims verified (CoVe report passes)"
+    - "Limitations section present"
+    - "No template content"
+bibliography:
+  dod:
+    - "All citations verified (5-layer check passes)"
+    - "No hallucinated references"
+    - "No retracted papers"
+    - "Format matches journal guidelines"
+    - "All cited PDFs present in cited_papers/"
+figures:
+  dod:
+    - "All figures referenced in Results/Methods"
+    - "Captions follow writing rules"
+    - "Resolution meets journal requirements"
+    - "Format meets journal requirements (TIFF/PNG/EPS/SVG)"
+tables:
+  dod:
+    - "All tables referenced in Results/Methods"
+    - "Captions follow writing rules"
+    - "Data matches source files"
